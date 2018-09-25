@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  web:
+    build: .
+    command: /usr/local/bin/uwsgi --ini taktaan.ini
+    container_name: taktaan-service  
+    volumes:
+      - .:/code
+      - /var/run:/var/run
+    ports:
+      - "5000:5000"
+    networks:
+      - fontoberta
+networks:
+  fontoberta:
+    external:
+      name: fontoberta-network
